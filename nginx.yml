@@ -28,7 +28,7 @@
             state: latest
           when: ansible_os_family == "Debian"
         - name: Make sure nginx is started on Ubuntu / Debian
-          services:
+          service:
             name: nginx
             state: started
           when: ansible_os_family == "Debian"
