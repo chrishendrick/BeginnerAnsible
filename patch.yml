@@ -1,0 +1,11 @@
+-
+    name: 'Restart all hosts at once'
+    hosts: all
+    gather_facts: no
+    remote_user: osboxes
+    become: true
+    tasks:
+        -
+            name: 'Reboot all hosts at once'
+            reboot:
+              reboot_timeout: 300
