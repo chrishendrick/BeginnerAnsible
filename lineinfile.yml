@@ -1,0 +1,7 @@
+-
+  name: Add a DNS server to /etc/resolve.conf
+  hosts: all
+  tasks:
+    - lineinfile:
+        path: /etc/resolve.conf
+        line: 'nameserver 1.1.1.1'
