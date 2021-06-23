@@ -1,11 +1,39 @@
 -
-    name: 'Restart all hosts at once'
+    name: 'Patch all hosts with OS specific modules'
     hosts: all
-    gather_facts: no
+    vars:
+      reboot_connect_timeout: 5
+      reboot_post_reboot_delay: 15
+      reboot_timeout: 600
+    gather_facts: yes
     remote_user: osboxes
     become: true
     tasks:
-        -
-            name: 'Reboot all hosts at once'
-            reboot:
-              reboot_timeout: 300
+        # Upgrade RHEL family OS packages - matches for CentOS too
+        - name: Upgrade RHEL Family OS packages
+          yum:
+            name: '*'
+            state: latest
+            when: ansible_os_family == "RedHat"    -
+
+        # Debian Family upgrade - matches for Ubuntu too
+        - name: Update repositories cache
+          apt:
+            update_cache: yes
+          when: ansible_os_family == "Debian"
+        - name: Update all packages to their latest version
+          apt:
+            name: "*"
+            state: latest
+          when: ansible_os_family == "Debian"
+        - name: Upgrade the OS (apt-get dist-upgrade)
+          apt:
+            upgrade: dist
+          when: ansible_os_family == "Debian"
+
+        # Reboot after upgrade
+        - name: Reboot host
+          reboot:
+            connect_timeout: "{{ reboot_connect_timeout }}"
+            post_reboot_delay: "{{ reboot_post_reboot_delay }}"
+            reboot_timeout: "{{ reboot_timeout }}"
