@@ -1,6 +1,8 @@
 -
   name: Add a DNS server to /etc/resolv.conf
   hosts: all
+  remote_user: osboxes
+  become: true
   tasks:
     - lineinfile:
         path: /etc/resolv.conf
