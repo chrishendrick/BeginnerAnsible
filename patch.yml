@@ -5,7 +5,7 @@
       reboot_connect_timeout: 5
       reboot_post_reboot_delay: 15
       reboot_timeout: 600
-    gather_facts: yes
+    gather_facts: no
     remote_user: osboxes
     become: true
     tasks:
@@ -14,7 +14,7 @@
           yum:
             name: '*'
             state: latest
-            when: ansible_os_family == "RedHat"
+          when: ansible_os_family == "RedHat"
 
         # Debian Family upgrade - matches for Ubuntu too
         - name: Update repositories cache
