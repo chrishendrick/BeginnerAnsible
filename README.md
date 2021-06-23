@@ -1,2 +1,2 @@
 # BeginnerAnsible
-From the Udemy course https://mathworks.udemy.com/learn-ansible/learn/v4/content 
+From the Udemy course https://udemy.com/learn-ansible/learn/v4/content 
