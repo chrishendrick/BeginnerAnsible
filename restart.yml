@@ -1,0 +1,7 @@
+-
+    name: 'Restart all hosts at once'
+    hosts: all
+    tasks:
+        -
+            name: 'Restart all hosts at once'
+            command: '/sbin/shutdown -r'
