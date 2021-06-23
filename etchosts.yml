@@ -1,4 +1,5 @@
-name: 'cat /etc/hosts on target hosts'
-hosts: all
-tasks:
-  - command: cat /etc/hosts
+-
+  name: 'cat /etc/hosts on target hosts'
+  hosts: all
+  tasks:
+    - command: cat /etc/hosts
