@@ -6,4 +6,4 @@
   tasks:
     - lineinfile:
         path: /etc/resolv.conf
-        line: 'nameserver 1.1.1.1'
+        line: 'nameserver {{ dns_server }}'
