@@ -10,7 +10,7 @@
     become: true
     tasks:
         # Upgrade RHEL family OS packages - matches for CentOS too
-        - name: Install nginx on CentOS / RHEL
+        - name: Install latest nginx on CentOS / RHEL
           yum:
             name: 'nginx.x86_64'
             state: latest
@@ -22,8 +22,13 @@
             update_cache: yes
             cache_valid_time: 3600
           when: ansible_os_family == "Debian"
-        - name: Update all packages to their latest version
+        - name: Install latest nginx on Ubuntu / Debian
           apt:
             name: "nginx-core"
             state: latest
+          when: ansible_os_family == "Debian"
+        - name: Make sure nginx is started on Ubuntu / Debian
+          services:
+            name: nginx
+            state: started
           when: ansible_os_family == "Debian"
