@@ -9,14 +9,14 @@
     remote_user: osboxes
     become: true
     tasks:
-        # Upgrade RHEL family OS packages - matches for CentOS too
+        # Upgrade RHEL family nginx package - matches for CentOS too
         - name: Install latest nginx on CentOS / RHEL
           yum:
             name: 'nginx.x86_64'
             state: latest
           when: ansible_os_family == "RedHat"
 
-        # Debian Family upgrade - matches for Ubuntu too
+        # Debian Family nginx package upgrade - matches for Ubuntu too
         - name: Update repositories cache
           apt:
             update_cache: yes
@@ -27,8 +27,8 @@
             name: "nginx-core"
             state: latest
           when: ansible_os_family == "Debian"
-        - name: Make sure nginx is started on Ubuntu / Debian
+
+        - name: Make sure nginx is started
           service:
             name: nginx
             state: started
-          when: ansible_os_family == "Debian"
