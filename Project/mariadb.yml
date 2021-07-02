@@ -22,3 +22,8 @@
 
         - name: Enable automatic start on boot for MariaDB
           shell: "systemctl enable mariadb"
+
+        - name: Create a new database with name 'ecomdb'
+          community.mysql.mysql_db:
+            name: ecomdb
+            state: present
