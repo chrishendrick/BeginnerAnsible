@@ -15,7 +15,6 @@
             name: 'firewalld'
             state: latest
 
-
         - name: Start firewalld
           service:
             name: firewalld
@@ -25,7 +24,7 @@
           shell: "systemctl enable firewalld"
 
         - name: Enable port for MariaDB
-          shell: "firewall-cmd --permanent --add-port={3306/tcp}"
+          shell: "firewall-cmd --permanent --add-port=3306/tcp"
 
         - name: Reload firewall
           shell: "firewall-cmd --reload"
