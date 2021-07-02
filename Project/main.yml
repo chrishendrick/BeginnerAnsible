@@ -1,0 +1,6 @@
+-
+  name: Installing ecommerce app project... db on centos, web on Ubuntu
+  hosts: target1
+  roles:
+    - firewalld
+    - mariadb
