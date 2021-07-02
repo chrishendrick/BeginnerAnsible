@@ -43,7 +43,9 @@
           state: latest
 
       - name: Remove existing index.html
-        shell: rm /var/www/html/index.html
+        ansible.builtin.file:
+          path: /var/www/html/index.html
+          state: absent
 
       - name: Download git repo from KodeKloud
         shell: git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html
