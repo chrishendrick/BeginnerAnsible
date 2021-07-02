@@ -24,6 +24,9 @@
           name: apache2
           state: started
 
+      - name: Enable automatic start on boot
+        shell: "systemctl enable apache2"
+
       - name: Install latest php on Ubuntu / Debian
         apt:
           name: 'php'
@@ -33,3 +36,11 @@
         apt:
           name: 'libapache2-mod-php'
           state: latest
+
+      - name: Install latest git on Ubuntu / Debian
+        apt:
+          name: 'git'
+          state: latest
+
+      - name: Download git repo from KodeKloud
+        shell: git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html
