@@ -51,13 +51,18 @@
           name: 'libapache2-mod-php'
           state: latest
 
+      - name: Install latest php-mysql on Ubuntu / Debian
+        apt:
+          name: 'php-mysql'
+          state: latest
+
       - name: Install latest git on Ubuntu / Debian
         apt:
           name: 'git'
           state: latest
 
       - name: Remove existing html directory so it can be replaced with learning-app-ecommerce.git
-        ansible.builtin.file:
+        file:
           path: /var/www/html
           state: absent
 
@@ -68,7 +73,12 @@
 #        shell: sed -i 's/172.20.1.101/192.168.1.29/g' /var/www/html/index.php
 
       - name: Swap in the correct db server IP (replace module)
-        ansible.builtin.replace:
+        replace:
           path: /var/www/html/index.php
           regexp: '172.20.1.101'
           replace: '192.168.1.29'
+
+      - name: Make sure apache2 is restarted
+        service:
+          name: apache2
+          state: restarted
