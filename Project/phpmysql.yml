@@ -29,7 +29,7 @@
           name: 'php'
           state: latest
 
-      - name: Make sure php is started
-        service:
-          name: php
-          state: started
+      - name: Install latest php on Ubuntu / Debian
+        apt:
+          name: 'libapache2-mod-php '
+          state: latest
