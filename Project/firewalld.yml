@@ -1,0 +1,26 @@
+-
+    name: 'Install firealld on CentOS'
+    hosts: all
+    vars:
+      reboot_connect_timeout: 5
+      reboot_post_reboot_delay: 15
+      reboot_timeout: 600
+    gather_facts: yes
+    remote_user: osboxes
+    become: true
+    tasks:
+        # Upgrade RHEL family firewalld package - matches for CentOS too
+        - name: Install latest firewalld on CentOS / RHEL
+          yum:
+            name: 'firewalld'
+            state: latest
+          when: ansible_os_family == "RedHat"
+
+        - name: Start firewalld
+          service:
+            name: firewalld
+            state: started
+
+        - name: Enable automatic start on boot
+          shell: "systemctl enable firewalld"
+          when: ansible_os_family == "RedHat"
