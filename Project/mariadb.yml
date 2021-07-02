@@ -41,6 +41,11 @@
             name: test
             state: absent
 
+        - name: Remove ecomdb database  #only needed in testing
+          community.mysql.mysql_db:
+            name: ecomdb
+            state: absent
+
         - name: Create a new database with name 'ecomdb'
           community.mysql.mysql_db:
             name: ecomdb
