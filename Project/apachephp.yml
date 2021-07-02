@@ -44,7 +44,7 @@
 
       - name: Remove existing index.html
         ansible.builtin.file:
-          path: /var/www/html/index.html
+          path: /var/www/html/*
           state: absent
 
       - name: Download git repo from KodeKloud
