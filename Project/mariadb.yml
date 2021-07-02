@@ -59,4 +59,4 @@
             dest: /tmp/db-load-script.sql
 
         - name: Feed the script into mariadb
-          shell: "mysql < db-load-script.sql"
+          shell: "mysql < /tmp/db-load-script.sql"
