@@ -23,3 +23,9 @@
 
         - name: Enable automatic start on boot
           shell: "systemctl enable firewalld"
+
+        - name: Enable port for MariaDB
+          shell: "firewall-cmd --permanent --add-port={80/tcp,443/tcp}"
+
+        - name: Reload firewall
+          shell: "firewall-cmd --reload"

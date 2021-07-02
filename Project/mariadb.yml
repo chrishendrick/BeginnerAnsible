@@ -1,0 +1,24 @@
+-
+    name: 'Install MariaDB on CentOS'
+    hosts: target1
+    vars:
+      reboot_connect_timeout: 5
+      reboot_post_reboot_delay: 15
+      reboot_timeout: 600
+    gather_facts: yes
+    remote_user: osboxes
+    become: true
+    tasks:
+
+        - name: Install latest MariaDB on CentOS / RHEL
+          yum:
+            name: 'mariadb-server'
+            state: latest
+
+        - name: Start MariaDB
+          service:
+            name: mariadb
+            state: started
+
+        - name: Enable automatic start on boot for MariaDB
+          shell: "systemctl enable mariadb"
