@@ -20,7 +20,7 @@
           state: latest
 
       - name: Setup firewall ports and make them permanent
-        shell: "firewall-cmd --permanent --add-port={80/tcp,443/tcp}"
+        shell: "firewall-cmd --permanent --add-port=80/tcp,443/tcp"
 
       - name: Reload firewall
         shell: "firewall-cmd --reload"
