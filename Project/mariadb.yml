@@ -17,7 +17,7 @@
 
         - name: Install latest PyMySQL on CentOS / RHEL
           yum:
-            name: 'pymysql'
+            name: 'MySQL-python'
             state: latest
 
         - name: Start MariaDB
