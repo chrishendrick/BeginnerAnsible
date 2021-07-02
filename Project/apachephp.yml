@@ -29,7 +29,7 @@
           name: 'php'
           state: latest
 
-      - name: Install latest php on Ubuntu / Debian
+      - name: Install latest libapache2-mod-php on Ubuntu / Debian
         apt:
-          name: 'libapache2-mod-php '
+          name: 'libapache2-mod-php'
           state: latest
