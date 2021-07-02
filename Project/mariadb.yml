@@ -48,7 +48,7 @@
 
         - name: Create database user with name 'ecomuser' and password 'ecompassword' with all database privileges
           community.mysql.mysql_user:
-            name: ecomuser
+            name: ecomuser@192.168.1.173
             password: ecompassword
             priv: '*.*:ALL'
             state: present
