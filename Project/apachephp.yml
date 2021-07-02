@@ -19,8 +19,10 @@
           name: 'firewalld'
           state: latest
 
-      - name: Setup firewall ports and make them permanent
+      - name: Setup firewall port 443 and make permanent
         shell: "firewall-cmd --permanent --add-port=443/tcp"
+
+      - name: Setup firewall port 80 and make permanent
         shell: "firewall-cmd --permanent --add-port=80/tcp"
 
       - name: Reload firewall
