@@ -52,3 +52,11 @@
             password: ecompassword
             priv: '*.*:ALL'
             state: present
+
+        - name: Copy db-load-script.sql to target MariaDB host
+          copy:
+            src: ./db-load-script.sql
+            dest: /tmp/db-load-script.sql
+
+        - name: Feed the script into mariadb
+          shell: "mysql < db-load-script.sql"
