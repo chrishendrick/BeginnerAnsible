@@ -15,7 +15,7 @@
             name: 'mariadb-server'
             state: latest
 
-        - name: Install latest PyMySQL on CentOS / RHEL
+        - name: Install latest MySQL-python on CentOS / RHEL
           yum:
             name: 'MySQL-python'
             state: latest
@@ -34,3 +34,16 @@
           community.mysql.mysql_db:
             name: ecomdb
             state: present
+
+        - name: Removes all anonymous user accounts
+          community.mysql.mysql_user:
+            name: ''
+            host_all: yes
+            state: absent
+
+        - name: Create database user with name 'ecomuser' and password 'ecompassword' with all database privileges
+          community.mysql.mysql_user:
+            name: ecomuser
+            password: ecompassword
+            priv: '*.*:ALL'
+            state: present        
