@@ -30,20 +30,25 @@
 
 #Pre-reqs on Ansible controller: run ansible-galaxy collection install community.mysql
 
-        - name: Create a new database with name 'ecomdb'
-          community.mysql.mysql_db:
-            name: ecomdb
-            state: present
-
         - name: Removes all anonymous user accounts
           community.mysql.mysql_user:
             name: ''
             host_all: yes
             state: absent
 
+        - name: Remove test database
+          community.mysql.mysql_db:
+            name: test
+            state: absent
+
+        - name: Create a new database with name 'ecomdb'
+          community.mysql.mysql_db:
+            name: ecomdb
+            state: present
+
         - name: Create database user with name 'ecomuser' and password 'ecompassword' with all database privileges
           community.mysql.mysql_user:
             name: ecomuser
             password: ecompassword
             priv: '*.*:ALL'
-            state: present        
+            state: present
