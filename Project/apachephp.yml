@@ -65,4 +65,4 @@
         shell: git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html
 
       - name: Swap in the correct db server IP
-        shell: sudo sed -i 's/172.20.1.101/192.168.1.29/g' /var/www/html/index.php
+        shell: sed -i 's/172.20.1.101/192.168.1.29/g' /var/www/html/index.php
