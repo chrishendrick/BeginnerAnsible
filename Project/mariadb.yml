@@ -15,6 +15,11 @@
             name: 'mariadb-server'
             state: latest
 
+        - name: Install latest PyMySQL on CentOS / RHEL
+          yum:
+            name: 'pymysql'
+            state: latest
+
         - name: Start MariaDB
           service:
             name: mariadb
@@ -22,6 +27,8 @@
 
         - name: Enable automatic start on boot for MariaDB
           shell: "systemctl enable mariadb"
+
+#Pre-reqs on Ansible controller: run ansible-galaxy collection install community.mysql
 
         - name: Create a new database with name 'ecomdb'
           community.mysql.mysql_db:
